@@ -1,23 +1,22 @@
 USE alx_book_store;
 
-
-CREATE TABLE authors (
+CREATE TABLE Authors (
     author_id INT NOT NULL,
     author_name VARCHAR(215),
     PRIMARY KEY (author_id)
 );
 
-CREATE TABLE books (
+CREATE TABLE Books (
     book_id INT NOT NULL,
     title VARCHAR(130),
     author_id INT NOT NULL,
     price DOUBLE,
     publication_date DATE,
     PRIMARY KEY (book_id),
-    FOREIGN KEY (author_id) REFERENCES authors(author_id)
+    FOREIGN KEY (author_id) REFERENCES Authors(author_id)
 );
 
-CREATE TABLE customers (
+CREATE TABLE Customers (
     customer_id INT NOT NULL,
     customer_name VARCHAR(215),
     email VARCHAR(215),
@@ -25,20 +24,20 @@ CREATE TABLE customers (
     PRIMARY KEY (customer_id)
 );
 
-CREATE TABLE orders (
+CREATE TABLE Orders (
     order_id INT NOT NULL,
     customer_id INT NOT NULL,
     order_date DATE,
     PRIMARY KEY (order_id),
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
 );
 
-CREATE TABLE order_details (
+CREATE TABLE Order_Details (
     orderdetailid INT NOT NULL,
     order_id INT NOT NULL,
     book_id INT NOT NULL,
     quantity DOUBLE NOT NULL,
     PRIMARY KEY (orderdetailid),
-    FOREIGN KEY (order_id) REFERENCES orders(order_id),
-    FOREIGN KEY (book_id) REFERENCES books(book_id)
+    FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY (book_id) REFERENCES Books(book_id)
 );
